@@ -18,6 +18,13 @@
                 <input type="text" name="symbol" required>
             </div>
             <div class="form-group">
+                <label>Option Type:</label>
+                <select name="option_type" required>
+                    <option value="call">Call</option>
+                    <option value="put">Put</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label>Expiry Date:</label>
                 <input type="date" name="expiry_date" required>
             </div>
@@ -51,6 +58,7 @@
         {% if result %}
         <div class="result">
             <h3>Results for {{ result.symbol }}</h3>
+            <p>Option Type: {{ result.option_type }}</p>
             <p>Expiry: {{ result.expiry_date }}</p>
             <p>Black-Scholes Price: ${{ result.bs_price }}</p>
             <p>Edge: ${{ result.edge }} {{ result.recommendation }}</p>
