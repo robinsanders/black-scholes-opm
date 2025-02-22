@@ -1,0 +1,61 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Options Edge Calculator</title>
+    <style>
+        .container { max-width: 800px; margin: auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        .result { margin-top: 20px; padding: 15px; background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Black-Scholes Option Calculator</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label>Stock Symbol:</label>
+                <input type="text" name="symbol" required>
+            </div>
+            <div class="form-group">
+                <label>Expiry Date:</label>
+                <input type="date" name="expiry_date" required>
+            </div>
+            <div class="form-group">
+                <label>Current Stock Price ($):</label>
+                <input type="number" step="0.01" name="spot_price" required>
+            </div>
+            <div class="form-group">
+                <label>Strike Price ($):</label>
+                <input type="number" step="0.01" name="strike_price" required>
+            </div>
+            <div class="form-group">
+                <label>Volatility (%):</label>
+                <input type="number" step="0.01" name="volatility" required>
+            </div>
+            <div class="form-group">
+                <label>Risk-free Rate (%):</label>
+                <input type="number" step="0.01" name="risk_free_rate" required>
+            </div>
+            <div class="form-group">
+                <label>Days to Expiry:</label>
+                <input type="number" name="time_to_expiry" required>
+            </div>
+            <div class="form-group">
+                <label>Market Option Price ($):</label>
+                <input type="number" step="0.01" name="market_price" required>
+            </div>
+            <button type="submit">Calculate</button>
+        </form>
+        
+        {% if result %}
+        <div class="result">
+            <h3>Results for {{ result.symbol }}</h3>
+            <p>Expiry: {{ result.expiry_date }}</p>
+            <p>Black-Scholes Price: ${{ result.bs_price }}</p>
+            <p>Edge: ${{ result.edge }} {{ result.recommendation }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
