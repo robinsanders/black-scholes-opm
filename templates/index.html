@@ -15,42 +15,42 @@
         <form method="POST">
             <div class="form-group">
                 <label>Stock Symbol:</label>
-                <input type="text" name="symbol" required>
+                <input type="text" name="symbol" required value="{{ request.form['symbol'] if request.form['symbol'] }}">
             </div>
             <div class="form-group">
                 <label>Option Type:</label>
                 <select name="option_type" required>
-                    <option value="call">Call</option>
-                    <option value="put">Put</option>
+                    <option value="call" {% if request.form['option_type'] == 'call' %}selected{% endif %}>Call</option>
+                    <option value="put" {% if request.form['option_type'] == 'put' %}selected{% endif %}>Put</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Expiry Date:</label>
-                <input type="date" name="expiry_date" required>
+                <input type="date" name="expiry_date" required value="{{ request.form['expiry_date'] if request.form['expiry_date'] }}">
             </div>
             <div class="form-group">
                 <label>Current Stock Price ($):</label>
-                <input type="number" step="0.01" name="spot_price" required>
+                <input type="number" step="0.01" name="spot_price" required value="{{ request.form['spot_price'] if request.form['spot_price'] }}">
             </div>
             <div class="form-group">
                 <label>Strike Price ($):</label>
-                <input type="number" step="0.01" name="strike_price" required>
+                <input type="number" step="0.01" name="strike_price" required value="{{ request.form['strike_price'] if request.form['strike_price'] }}">
             </div>
             <div class="form-group">
                 <label>Volatility (%):</label>
-                <input type="number" step="0.01" name="volatility" required>
+                <input type="number" step="0.01" name="volatility" required value="{{ request.form['volatility'] if request.form['volatility'] }}">
             </div>
             <div class="form-group">
                 <label>Risk-free Rate (%):</label>
-                <input type="number" step="0.01" name="risk_free_rate" required>
+                <input type="number" step="0.01" name="risk_free_rate" required value="{{ request.form['risk_free_rate'] if request.form['risk_free_rate'] }}">
             </div>
             <div class="form-group">
                 <label>Days to Expiry:</label>
-                <input type="number" name="time_to_expiry" required>
+                <input type="number" name="time_to_expiry" required value="{{ request.form['time_to_expiry'] if request.form['time_to_expiry'] }}">
             </div>
             <div class="form-group">
                 <label>Market Option Price ($):</label>
-                <input type="number" step="0.01" name="market_price" required>
+                <input type="number" step="0.01" name="market_price" required value="{{ request.form['market_price'] if request.form['market_price'] }}">
             </div>
             <button type="submit">Calculate</button>
         </form>
